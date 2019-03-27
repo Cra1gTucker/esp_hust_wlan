@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ESP8266 AP Settings</title>
+        <script src="simplepost.js"></script>
+        <script>
+            function post_ap(){
+                var ssid = document.getElementById('ssid').value;
+                var pass = document.getElementById('pass').value;
+                post("/ap",{ssid: ssid,pass: pass});
+            }
+        </script>
+    </head>
+    <body>
+        <div style="text-align: center">
+            <h1>ESP8266 AP Settings</h1>
+            SSID:<input type="text" id="ssid"><br>
+            Password:<input type="password" id="pass"><br>
+            <input type="submit" value="save" onclick="post_ap()"><br>
+            <em>Note: Changes take effect on next startup.</em>
+        </div>
+    </body>
+</html>

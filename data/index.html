@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <title>ESP8266 HUST_WIRELESS NAT</title>
+    <head>
+        <meta charset="utf-8">
+        <script src="RSA.js"></script>
+        <script src="BigInt.js"></script>
+        <script src="Barrett.js"></script>
+        <script src="simplepost.js"></script>
+        <script>
+            function post_config(){
+                var userId = document.getElementById('u').value;
+                var password = document.getElementById('p').value;
+                setMaxDigits(130);
+                var key = new RSAKeyPair("10001","","9c2899b8ceddf9beafad2db8e431884a79fd9b9c881e459c0e1963984779d6612222cee814593cc458845bbba42b2d3474c10b9d31ed84f256c6e3a1c795e68e18585b84650076f122e763289a4bcb0de08762c3ceb591ec44d764a69817318fbce09d6ecb0364111f6f38e90dc44ca89745395a17483a778f1cc8dc990d87c3");
+                password = encryptedString(key,password);
+                post("/config",{user: userId,pass: password});
+            }
+        </script>
+    </head>
+    <style>
+        #main{
+            text-align:center
+        }
+    </style>
+    <body>
+        <div id='main'>
+            <h1>ESP8266 HUST_WIRELESS NAT Configuraion</h1>
+            For AP settings go <a href="ap.html">here</a>.<br>
+            UserId: <input id="u" type="text"><br>
+            Password: <input id="p" type="password"><br>
+            <input name="submit" type="submit" value="save" onclick="post_config()"><br>
+            Click <a href="/login">here</a> to login again if logged out.
+        </div>
+    </body>
+</html>
